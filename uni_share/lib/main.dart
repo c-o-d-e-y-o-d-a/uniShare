@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:uni_share/constants.dart';
 import 'package:uni_share/controllers/auth_controller.dart';
-import 'package:uni_share/screens/auth/login_screen.dart';
 import 'package:uni_share/screens/auth/signUp_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -29,7 +28,7 @@ class MyApp extends StatelessWidget {
        
       scaffoldBackgroundColor: backgroundColor,
       ),
-      home: LoginScreen(),
+      home: SignUpScreen(),
        
       
     );

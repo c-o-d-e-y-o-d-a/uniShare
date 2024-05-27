@@ -11,6 +11,8 @@ class LoginScreen extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
+
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,6 +75,7 @@ class LoginScreen extends StatelessWidget {
                   ),
                  child: InkWell(
                   onTap: (){
+                    authController.loginUser(_emailController.text,_passwordController.text);
                     
                   },
                   child:Center(
