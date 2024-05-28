@@ -33,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: Icon(Icons.home,
                 size: 30), // Correctly wrap the icon in an Icon widget
             label:"home"
-                "Home", // Correctly place the label parameter inside BottomNavigationBarItem
+               
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.search,size: 30), 

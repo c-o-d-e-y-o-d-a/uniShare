@@ -7,12 +7,12 @@ import 'package:uni_share/screens/add_video_screen.dart';
 import 'package:uni_share/screens/video_screen.dart';
 
 //screens to refer to
-const pages = [
+List pages = [
   VideoScreen(),
 
   Text("homescreen"),
 
-  AddVideoScreen(),
+  const AddVideoScreen(),
 
   Text("homescreen"),
 
