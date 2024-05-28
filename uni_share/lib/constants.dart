@@ -4,10 +4,11 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:uni_share/controllers/auth_controller.dart';
 import 'package:uni_share/screens/add_video_screen.dart';
+import 'package:uni_share/screens/video_screen.dart';
 
 //screens to refer to
 const pages = [
-  Text("homescreen"),
+  VideoScreen(),
 
   Text("homescreen"),
 
