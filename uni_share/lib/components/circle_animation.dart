@@ -24,6 +24,12 @@ class _CircleAnimationState extends State<CircleAnimation>  with SingleTickerPro
     controller.forward();
     controller.repeat();
   }
+  @override
+  void dispose(){
+    controller.dispose();
+    super.dispose();
+  }
+  
 
 
   @override

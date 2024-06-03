@@ -50,9 +50,17 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
         body: SingleChildScrollView(
             child: Column(
       children: [
+        const SizedBox(
+          height: 30,
+        ),
+        GestureDetector(
+          onTap: (){Navigator.pop(context);},
+          child: Text('go back'),
+        ),
         const SizedBox(
           height: 30,
         ),
