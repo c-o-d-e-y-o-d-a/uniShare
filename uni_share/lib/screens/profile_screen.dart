@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:uni_share/constants.dart';
 import 'package:uni_share/controllers/profile_controller.dart';
+import 'package:uni_share/controllers/auth_controller.dart'; // Import AuthController
 
 class ProfileScreen extends StatefulWidget {
   final String uid;
@@ -15,6 +16,7 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   final ProfileController profileController = Get.put(ProfileController());
+  final AuthController authController = Get.find(); // Find the AuthController
 
   @override
   void initState() {
@@ -34,8 +36,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
           }
           return Scaffold(
             appBar: AppBar(
+              centerTitle: true,
               backgroundColor: Colors.black12,
-              leading: Icon(Icons.person_add_alt_1_outlined),
+              leading: InkWell(onTap: (){
+                profileController.followUser();
+              },child: const Icon(Icons.person_add_alt_1_outlined, ),),
               actions: const [
                 Icon(Icons.more_horiz),
               ],
@@ -74,10 +79,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           children: [
                             Column(
                               children: [
-                                Text(
-                                  '10',
-                                  style: const TextStyle(
-                                      fontSize: 20, fontWeight: FontWeight.bold),
+                                const Text(
+                                  'following',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
                                 ),
                                 const SizedBox(height: 5),
                                 Text(
@@ -92,10 +98,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             const SizedBox(width: 15),
                             Column(
                               children: [
-                                Text(
-                                  '10',
-                                  style: const TextStyle(
-                                      fontSize: 20, fontWeight: FontWeight.bold),
+                                const Text(
+                                  'followers',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
                                 ),
                                 const SizedBox(height: 5),
                                 Text(
@@ -111,14 +118,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               color: Colors.black54,
                               width: 1,
                               height: 15,
-                              margin: const EdgeInsets.symmetric(horizontal: 15),
+                              margin:
+                                  const EdgeInsets.symmetric(horizontal: 15),
                             ),
                             Column(
                               children: [
-                                Text(
-                                  '12',
-                                  style: const TextStyle(
-                                      fontSize: 20, fontWeight: FontWeight.bold),
+                                const Text(
+                                  'likes',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
                                 ),
                                 const SizedBox(height: 5),
                                 Text(
@@ -147,15 +156,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 } else {
                                   controller.followUser();
                                 }
-                                // Add sign out functionality
                               },
-                              child: const Text(
+                              child: Text(
                                 widget.uid == authController.user?.uid
                                     ? "Sign Out"
                                     : controller.user['isFollowing']
                                         ? 'Unfollow'
                                         : 'Follow',
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 15,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -167,15 +175,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
                           itemCount: controller.user['thumbnails'].length,
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 2,
-                                    childAspectRatio: 1,
-                                    crossAxisSpacing: 5),
-                            itemBuilder: (context,index){
-                              String thumbnail = controller.user['thumbnails'][index];
-                              return CachedNetworkImage(imageUrl: thumbnail, fit: BoxFit.cover,);
-                            })
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  childAspectRatio: 1,
+                                  crossAxisSpacing: 5),
+                          itemBuilder: (context, index) {
+                            String thumbnail =
+                                controller.user['thumbnails'][index];
+                            return CachedNetworkImage(
+                              imageUrl: thumbnail,
+                              fit: BoxFit.cover,
+                            );
+                          },
+                        )
                       ],
                     ),
                   ],

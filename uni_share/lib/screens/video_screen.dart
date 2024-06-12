@@ -11,7 +11,7 @@ class VideoScreen extends StatelessWidget {
 
   final VideoController videoController = Get.put(VideoController());
 
-  buildProfile(String profilePhoto) {
+  Widget buildProfile(String profilePhoto) {
     return SizedBox(
       width: 50,
       height: 60,
@@ -41,7 +41,7 @@ class VideoScreen extends StatelessWidget {
     );
   }
 
-  buildMusicAlbum(String profilePhoto) {
+  Widget buildMusicAlbum(String profilePhoto) {
     return SizedBox(
       width: 60,
       height: 60,
@@ -52,7 +52,8 @@ class VideoScreen extends StatelessWidget {
             height: 50,
             width: 50,
             decoration: BoxDecoration(
-              gradient: const LinearGradient(colors: [Colors.grey, Colors.white]),
+              gradient:
+                  const LinearGradient(colors: [Colors.grey, Colors.white]),
               borderRadius: BorderRadius.circular(25),
             ),
             child: ClipRRect(
@@ -96,7 +97,8 @@ class VideoScreen extends StatelessWidget {
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Text(
                                     data.username,
@@ -143,11 +145,13 @@ class VideoScreen extends StatelessWidget {
                                 Column(
                                   children: [
                                     InkWell(
-                                      onTap: () => videoController.likeVideo(data.id),
+                                      onTap: () =>
+                                          videoController.likeVideo(data.id),
                                       child: Icon(
                                         Icons.favorite,
                                         size: 40,
-                                        color: data.likes.contains(authController.user!.uid)
+                                        color: data.likes.contains(
+                                                authController.user!.uid)
                                             ? Colors.red
                                             : Colors.white,
                                       ),

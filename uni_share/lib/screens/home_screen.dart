@@ -19,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
         onTap: (indx){
           setState(() {
             pageIndx = indx;
-          });
+          }); 
         },
         type: BottomNavigationBarType.fixed,
         backgroundColor: backgroundColor,

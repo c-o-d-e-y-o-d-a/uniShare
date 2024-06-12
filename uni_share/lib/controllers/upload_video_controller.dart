@@ -5,73 +5,85 @@ import 'package:uni_share/constants.dart';
 import 'package:uni_share/models/video_model.dart';
 import 'package:video_compress/video_compress.dart';
 
-class UploadVideoController extends GetxController{
-
+class UploadVideoController extends GetxController {
   _compressVideo(String videoPath) async {
-    final compressedVideo = await  VideoCompress.compressVideo(videoPath, quality: VideoQuality.MediumQuality);
+    final compressedVideo = await VideoCompress.compressVideo(videoPath,
+        quality: VideoQuality.MediumQuality);
+    print('Video compressed successfully');
     return compressedVideo!.file;
-    
-
   }
 
-  // upload video function
-
-  Future<String> _uploadVideoToStorage(String id, String videoPath ) async {
-    Reference ref =  firebaseStorage.ref().child('videos').child(id);
-
+  Future<String> _uploadVideoToStorage(String id, String videoPath) async {
+    print('Video upload function started');
+    Reference ref = firebaseStorage.ref().child('videos').child(id);
+    print('Video upload reference found');
     UploadTask uploadTask = ref.putFile(await _compressVideo(videoPath));
-
+    print('Compressed file found');
     TaskSnapshot snap = await uploadTask;
+    print('Download URL found');
     String downloadUrl = await snap.ref.getDownloadURL();
     return downloadUrl;
-
   }
-
-  //upload thumbnail to storage
-
 
   _getThumbnail(String videoPath) async {
     final thumbnail = await VideoCompress.getFileThumbnail(videoPath);
+    print('Thumbnail found');
     return thumbnail;
   }
 
-   Future<String> _uploadImageToStorage(String id, String videoPath) async {
-    Reference ref = firebaseStorage.ref().child('videos').child(id);
-
+  Future<String> _uploadImageToStorage(String id, String videoPath) async {
+    print('Upload image to storage function starts');
+    Reference ref = firebaseStorage.ref().child('thumbnails').child(id);
+    print('Upload image to storage reference found');
     UploadTask uploadTask = ref.putFile(await _getThumbnail(videoPath));
-
+    print('File has been uploaded');
     TaskSnapshot snap = await uploadTask;
     String downloadUrl = await snap.ref.getDownloadURL();
     return downloadUrl;
-    
   }
 
-
-  
-
   uploadVideo(String songName, String caption, String videoPath) async {
-    try{
+    print('Main upload video function starts before try');
+    try {
+      print('Main upload video function starts');
       String uid = firebaseAuth.currentUser!.uid;
-      DocumentSnapshot userDoc = await firestore.collection('user').doc(uid).get();
+      DocumentSnapshot userDoc =
+          await firestore.collection('users').doc(uid).get();
+      if (!userDoc.exists) {
+        throw Exception("User document does not exist");
+      }
       var allDocs = await firestore.collection('videos').get();
+      print('Reference found');
       int len = allDocs.docs.length;
       String videoUrl = await _uploadVideoToStorage("Video $len", videoPath);
-      String thumbnail = await  _uploadImageToStorage("Video $len", videoPath);
+      print('Video uploaded to storage');
+      String thumbnail = await _uploadImageToStorage("Video $len", videoPath);
 
-      Video video = Video(username: (userDoc.data()! as Map<String, dynamic>)['name'], uid:uid, id: "Video $len", likes:[], commentCount: 0,shareCount: 0, songName: songName, caption: caption, videoUrl: videoUrl, thumbnail: thumbnail, profilePhoto: (userDoc.data()! as Map<String, dynamic>)['profilePhoto'] );
-      
-      await firestore.collection('videos').doc('Video $len').set(
-        video.toJson(),
-      );
+      Video video = Video(
+          username: 'user1',
+          // (userDoc.data()! as Map<String, dynamic>)['name'],
+          uid: uid,
+          id: "Video $len",
+          likes: [],
+          commentCount: 0,
+          shareCount: 0,
+          songName: songName,
+          caption: caption,
+          videoUrl: videoUrl,
+          thumbnail: thumbnail,
+          profilePhoto:'gs://unishare-e9d52.appspot.com/thumbnails/Video 1'
+              // (userDoc.data()! as Map<String, dynamic>)['profilePhoto']
+              );
+
+      await firestore
+          .collection('videos')
+          .doc('Video $len')
+          .set(video.toJson());
+      print('EVERYTHING IS DONE NOW LESGOO !!!!!!!!!!!!!!! Video object uploaded to Firestore');
 
       Get.back();
-
-
+    } catch (e) {
+      Get.snackbar("Error uploading video", e.toString());
     }
-    catch(e){
-      Get.snackbar("Error uploading Video", e.toString());
-
-    }
-
   }
 }

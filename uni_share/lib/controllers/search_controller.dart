@@ -3,20 +3,31 @@ import 'package:get/get.dart';
 import 'package:uni_share/constants.dart';
 import 'package:uni_share/models/user_model.dart';
 
-class SearchController extends GetxController{
+class SearchController extends GetxController {
   final Rx<List<User>> _searchedUsers = Rx<List<User>>([]);
 
   List<User> get searchedUsers => _searchedUsers.value;
 
-  searchUser(String typedUser) async {
+  void searchUser(String typedUser) {
     _searchedUsers.bindStream(
-      firestore.collection('users').where('name', isGreaterThanOrEqualTo:  typedUser).snapshots().map((QuerySnapshot query){
+      FirebaseFirestore.instance
+          .collection('users')
+          .where('name', isGreaterThanOrEqualTo: typedUser)
+          .snapshots()
+          .map((QuerySnapshot query) {
         List<User> retVal = [];
-        for(var elem in query.docs){
-          retVal.add(User.fromSnap(elem));
-        }
+        query.docs.forEach((doc) {
+          retVal.add(User.fromSnap(doc));
+        });
         return retVal;
-      })
+      }),
     );
+  }
+
+  @override
+  void onClose() {
+    // Clean up stream subscription when the controller is closed
+    _searchedUsers.close();
+    super.onClose();
   }
 }
