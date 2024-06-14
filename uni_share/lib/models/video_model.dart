@@ -45,21 +45,17 @@ class Video {
     var snapshot = snap.data() as Map<String, dynamic>;
 
     return Video(
-      username: snapshot['username'],
-      uid: snapshot['uid'],
-      id: snapshot['id'],
-      likes: snapshot['likes'], 
-      commentCount: snapshot['commentCount'],
-      shareCount: snapshot['shareCount'],
-      songName: snapshot['songName'],
-      caption: snapshot['caption'],
-      videoUrl: snapshot['videoUrl'],
-      thumbnail: snapshot['thumbnail'],
-      profilePhoto: snapshot['profilePhoto'],
+      username: snapshot['username'] ?? '',
+      uid: snapshot['uid'] ?? '',
+      id: snapshot['id'] ?? '',
+      likes: snapshot['likes'] ?? [],
+      commentCount: snapshot['commentCount'] ?? 0,
+      shareCount: snapshot['shareCount'] ?? 0,
+      songName: snapshot['songName'] ?? '',
+      caption: snapshot['caption'] ?? '',
+      videoUrl: snapshot['videoUrl'] ?? '',
+      thumbnail: snapshot['thumbnail'] ?? '',
+      profilePhoto: snapshot['profilePhoto'] ?? '',
     );
-
-    
-
-    
   }
 }

@@ -4,6 +4,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:uni_share/controllers/auth_controller.dart';
 import 'package:uni_share/screens/add_video_screen.dart';
+import 'package:uni_share/screens/messages_screen.dart';
 import 'package:uni_share/screens/profile_screen.dart';
 import 'package:uni_share/screens/search_screen.dart';
 import 'package:uni_share/screens/video_screen.dart';
@@ -16,7 +17,7 @@ List pages = [
 
   const AddVideoScreen(),
 
-  const Text("homescreen"),
+  AllChatsScreen(),
 
    ProfileScreen(uid: authController.user!.uid),
 
