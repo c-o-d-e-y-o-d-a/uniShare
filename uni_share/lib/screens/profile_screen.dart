@@ -3,7 +3,8 @@ import 'package:get/get.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:uni_share/constants.dart';
 import 'package:uni_share/controllers/profile_controller.dart';
-import 'package:uni_share/controllers/auth_controller.dart'; // Import AuthController
+import 'package:uni_share/controllers/auth_controller.dart';
+import 'package:uni_share/screens/chat_screen.dart'; // Import AuthController
 
 class ProfileScreen extends StatefulWidget {
   final String uid;
@@ -171,6 +172,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ),
                           ),
                         ),
+                        InkWell(
+                          onTap: () {
+                            if (controller.user != null) {
+                              Get.to(ChatPage(
+                                receiverUserEmail:
+                                    controller.user['email'] ?? '',
+                                receiverUserID: controller.user['uid'] ?? '',
+                                profilePhoto: controller.user['profilePhoto']?? '',
+                              ));
+                            } else {
+                              // Handle the case where controller.user is null
+                              // For example, show a snackbar or log an error
+                              print('controller.user is null');
+                            }
+                          },
+                          child: Icon(
+                            Icons.message_outlined,
+                            size: 30,
+                          ),
+                        ),
+
                         GridView.builder(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),

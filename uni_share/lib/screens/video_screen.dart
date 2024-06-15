@@ -74,6 +74,9 @@ class VideoScreen extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       body: Obx(() {
+        if (videoController.videoList.isEmpty) {
+          return const Center(child: CircularProgressIndicator());
+        }
         return PageView.builder(
           itemCount: videoController.videoList.length,
           controller: PageController(initialPage: 0, viewportFraction: 1),

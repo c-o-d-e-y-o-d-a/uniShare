@@ -7,11 +7,13 @@ import 'package:uni_share/controllers/chat_controller.dart';
 class ChatPage extends StatefulWidget {
   final String receiverUserEmail;
   final String receiverUserID;
+  final String profilePhoto;
 
   const ChatPage(
       {super.key,
       required this.receiverUserEmail,
-      required this.receiverUserID});
+      required this.receiverUserID,
+      required this.profilePhoto});
 
   @override
   State<ChatPage> createState() => _ChatPageState();
@@ -35,6 +37,13 @@ class _ChatPageState extends State<ChatPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+         automaticallyImplyLeading: true,
+        leading: Padding(
+          padding: EdgeInsets.all(10),
+          child: CircleAvatar(
+            backgroundImage: NetworkImage(widget.profilePhoto),
+          ),
+        ),
         title: Text(widget.receiverUserEmail),
       ),
       body: Column(

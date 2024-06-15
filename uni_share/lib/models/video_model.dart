@@ -4,7 +4,7 @@ class Video {
   String username;
   String uid;
   String id;
-  List likes;
+  List<String> likes;
   int commentCount;
   int shareCount;
   String songName;
@@ -48,7 +48,8 @@ class Video {
       username: snapshot['username'] ?? '',
       uid: snapshot['uid'] ?? '',
       id: snapshot['id'] ?? '',
-      likes: snapshot['likes'] ?? [],
+      likes: List<String>.from(
+      snapshot['likes'] ?? []), // Ensure likes is List<String>
       commentCount: snapshot['commentCount'] ?? 0,
       shareCount: snapshot['shareCount'] ?? 0,
       songName: snapshot['songName'] ?? '',

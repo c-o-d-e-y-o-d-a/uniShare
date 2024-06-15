@@ -15,6 +15,13 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading:InkWell(
+          onTap: (){firebaseAuth.signOut();},
+          child:  Icon(
+            Icons.logout,
+          ),),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         onTap: (indx){
           setState(() {

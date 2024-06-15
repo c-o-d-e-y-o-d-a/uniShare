@@ -7,6 +7,7 @@ import 'package:uni_share/constants.dart';
 import 'package:uni_share/models/user_model.dart' as userModel;
 import 'package:uni_share/screens/auth/login_screen.dart';
 import 'package:uni_share/screens/home_screen.dart';
+import 'package:uni_share/screens/onboarding/onboarding_screen.dart';
 
 class AuthController extends GetxController {
   static AuthController instance = Get.find();
