@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uni_share/components/custom_icon.dart';
+import 'package:uni_share/components/sideMenu.dart';
 import 'package:uni_share/constants.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -22,6 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
       //       Icons.logout,
       //     ),),
       // ),
+      drawer: MySideMenu(),
       bottomNavigationBar: BottomNavigationBar(
         onTap: (indx){
           setState(() {

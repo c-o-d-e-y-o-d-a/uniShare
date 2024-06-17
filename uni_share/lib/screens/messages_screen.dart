@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:uni_share/components/sideMenu.dart';
 import 'package:uni_share/screens/chat_screen.dart';
 import 'package:uni_share/screens/profile_screen_2.dart';
 
@@ -13,6 +14,8 @@ class AllChatsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: MySideMenu(),
+
       appBar: AppBar(
         backgroundColor: Colors.black,
         title: Text(
@@ -21,23 +24,7 @@ class AllChatsScreen extends StatelessWidget {
           
         ),
         centerTitle: true,
-        actions: [
-           InkWell(
-              onTap: () {
-                Get.to(ProfileScreen2(uid: auth.currentUser!.uid));
-              },
-              child: Icon(
-                Icons.more_horiz,
-                color: Colors.white,
-              )),
-          Padding(
-            padding: EdgeInsets.only(right: 20),
-            child: Icon(
-              Icons.add,
-              color: Colors.black,
-            ),
-          )
-        ],
+       
       ),
       body: _buildUserList(),
     );

@@ -86,6 +86,7 @@ class VideoScreen extends StatelessWidget {
             return Stack(
               children: [
                 VideoPlayerItem(videoUrl: data.videoUrl),
+                
                 Column(
                   children: [
                     const SizedBox(height: 100),
@@ -96,7 +97,8 @@ class VideoScreen extends StatelessWidget {
                         children: [
                           Expanded(
                             child: Container(
-                              padding: const EdgeInsets.only(left: 20, bottom: 20),
+                              padding:
+                                  const EdgeInsets.only(left: 20, bottom: 20),
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -111,10 +113,9 @@ class VideoScreen extends StatelessWidget {
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                                                    SizedBox(
+                                  SizedBox(
                                     height: 4,
                                   ),
-
                                   Text(
                                     data.title,
                                     style: const TextStyle(
@@ -125,13 +126,11 @@ class VideoScreen extends StatelessWidget {
                                   ),
                                   Row(
                                     children: [
-                                      
                                       Text(
                                         data.caption,
                                         style: const TextStyle(
                                           fontSize: 15,
                                           color: Colors.white,
-                                          
                                         ),
                                       ),
                                     ],
@@ -176,7 +175,9 @@ class VideoScreen extends StatelessWidget {
                                     InkWell(
                                       onTap: () => Navigator.of(context).push(
                                         MaterialPageRoute(
-                                          builder: (context) => CommentScreen(postId: data.uid,),
+                                          builder: (context) => CommentScreen(
+                                            postId: data.uid,
+                                          ),
                                         ),
                                       ),
                                       child: const Icon(
