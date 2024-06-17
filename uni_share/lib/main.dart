@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uni_share/constants.dart';
 import 'package:uni_share/controllers/auth_controller.dart';
+import 'package:uni_share/screens/auth/login_screen.dart';
 import 'package:uni_share/screens/auth/signUp_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:uni_share/screens/onboarding/onboarding_screen.dart';
@@ -42,7 +43,7 @@ class MyApp extends StatelessWidget {
         splash: 'assets/logo.png',
         splashIconSize: 2000.0,
         centered: true,
-        nextScreen: initScreen == 0 ? OnboardingScreen() : SignUpScreen(),
+        nextScreen: initScreen == 0 ? OnboardingScreen() : LoginScreen(),
         backgroundColor: Colors.yellow.shade300,
         duration: 8100,
       ),

@@ -4,7 +4,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:uni_share/constants.dart';
 import 'package:uni_share/controllers/profile_controller.dart';
 import 'package:uni_share/controllers/auth_controller.dart';
-import 'package:uni_share/screens/chat_screen.dart'; // Import AuthController
+import 'package:uni_share/screens/chat_screen.dart';
+import 'package:uni_share/screens/profile_screen_2.dart'; // Import AuthController
 
 class ProfileScreen extends StatefulWidget {
   final String uid;
@@ -17,7 +18,8 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   final ProfileController profileController = Get.put(ProfileController());
-  final AuthController authController = Get.find(); // Find the AuthController
+  final AuthController authController = Get.find();
+  // Find the AuthController
 
   @override
   void initState() {
@@ -37,18 +39,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
           }
           return Scaffold(
             appBar: AppBar(
+              
               centerTitle: true,
-              backgroundColor: Colors.black12,
+              backgroundColor: Colors.yellow,
               leading: InkWell(onTap: (){
                 profileController.followUser();
-              },child: const Icon(Icons.person_add_alt_1_outlined, ),),
-              actions: const [
-                Icon(Icons.more_horiz),
+              },
+              child: const Icon(Icons.person_add_alt_1_outlined, color: Colors.black, ),),
+              actions:  [
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: InkWell(onTap:(){
+                    Get.to(ProfileScreen2(uid: authController.user!.uid));
+                    }, child:Icon(Icons.more_horiz, color: Colors.black,)),
+                ),
               ],
               title: Text(
-                controller.user['name'],
+                'Profile',
                 style: const TextStyle(
-                    fontWeight: FontWeight.bold, color: Colors.white),
+                    fontWeight: FontWeight.bold, color: Colors.black),
               ),
             ),
             body: SafeArea(
@@ -60,6 +69,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
+                            
                             ClipOval(
                               child: CachedNetworkImage(
                                 fit: BoxFit.cover,
@@ -180,6 +190,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     controller.user['email'] ?? '',
                                 receiverUserID: controller.user['uid'] ?? '',
                                 profilePhoto: controller.user['profilePhoto']?? '',
+                                userName: controller.user['name']??'',
                               ));
                             } else {
                               // Handle the case where controller.user is null

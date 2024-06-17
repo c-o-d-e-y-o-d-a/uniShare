@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:uni_share/constants.dart';
 
 class CustomIcon extends StatelessWidget {
   const CustomIcon({super.key});
@@ -16,7 +17,7 @@ class CustomIcon extends StatelessWidget {
             margin: const EdgeInsets.only(left: 10),
             width: 38,
             decoration: BoxDecoration(
-              color: const Color.fromARGB(255, 250, 45, 108),
+              color: Colors.yellow,
               borderRadius: BorderRadius.circular(7),
             ),
           ),
@@ -24,7 +25,7 @@ class CustomIcon extends StatelessWidget {
             margin: const EdgeInsets.only(right: 10),
             width: 38,
             decoration: BoxDecoration(
-              color: const Color.fromARGB(255, 32, 211, 234),
+              color: Colors.red,
               borderRadius: BorderRadius.circular(7),
             ),
           ),

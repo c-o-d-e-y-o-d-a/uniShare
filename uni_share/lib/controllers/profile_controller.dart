@@ -14,105 +14,123 @@ class ProfileController extends GetxController {
   }
 
   getUserData() async {
-    List<String> thumbnails = [];
-    var myVideos = await firestore
-        .collection('videos')
-        .where('uid', isEqualTo: _uid.value)
-        .get();
+    try {
+      List<String> thumbnails = [];
+      var myVideos = await firestore
+          .collection('videos')
+          .where('uid', isEqualTo: _uid.value)
+          .get();
 
-    for (var doc in myVideos.docs) {
-      thumbnails.add((doc.data() as dynamic)['thumbnails']);
+      for (var doc in myVideos.docs) {
+        var thumbnail = (doc.data() as dynamic)['thumbnails'];
+        if (thumbnail != null) {
+          thumbnails.add(thumbnail);
+        }
+      }
+
+      DocumentSnapshot userDoc =
+          await firestore.collection('users').doc(_uid.value).get();
+      final userData = userDoc.data()! as dynamic;
+
+      // Ensure the retrieved data is not null
+      String name = userData['name'] ?? 'No Name';
+      String profilePhoto = userData['profilePhoto'] ?? '';
+      String username = userData['username'] ?? 'No Username';
+      int likes = 0;
+      int followers = 0;
+      int following = 0;
+      bool isFollowing = false;
+
+      for (var item in myVideos.docs) {
+        var likesList = item.data()['likes'] as List?;
+        if (likesList != null) {
+          likes += likesList.length;
+        }
+      }
+
+      var followerDoc = await firestore
+          .collection('users')
+          .doc(_uid.value)
+          .collection('followers')
+          .get();
+      followers = followerDoc.docs.length;
+
+      var followingDoc = await firestore
+          .collection('users')
+          .doc(_uid.value)
+          .collection('following')
+          .get();
+      following = followingDoc.docs.length;
+
+      var currentUserFollowerDoc = await firestore
+          .collection('users')
+          .doc(_uid.value)
+          .collection('followers')
+          .doc(authController.user?.uid)
+          .get();
+      isFollowing = currentUserFollowerDoc.exists;
+
+      _user.value = {
+        'name': name,
+        'username': username,
+        'profilePhoto': profilePhoto,
+        'followers': followers.toString(),
+        'following': following.toString(),
+        'isFollowing': isFollowing,
+        'likes': likes.toString(),
+        'thumbnails': thumbnails
+      };
+      update();
+    } catch (e) {
+      print('Error fetching user data: $e');
     }
-
-    DocumentSnapshot userDoc =
-        await firestore.collection('users').doc(_uid.value).get();
-    final userData = userDoc.data()! as dynamic;
-    String name = userData['name'];
-    String profilePhoto = userData['profilePhoto'];
-    int likes = 0;
-    int followers = 0;
-    int following = 0;
-    bool isFollowing = false;
-
-    for (var item in myVideos.docs) {
-      likes += (item.data()['likes'] as List).length;
-    }
-
-    var followerDoc = await firestore
-        .collection('users')
-        .doc(_uid.value)
-        .collection('followers')
-        .get();
-    followers = followerDoc.docs.length;
-
-    var followingDoc = await firestore
-        .collection('users')
-        .doc(_uid.value)
-        .collection('following')
-        .get();
-    following = followingDoc.docs.length;
-
-    var currentUserFollowerDoc = await firestore
-        .collection('users')
-        .doc(_uid.value)
-        .collection('followers')
-        .doc(authController.user?.uid)
-        .get();
-    isFollowing = currentUserFollowerDoc.exists;
-
-    _user.value = {
-      'followers': followers.toString(),
-      'following': following.toString(),
-      'isFollowing': isFollowing,
-      'likes': likes.toString(),
-      'profilePhoto': profilePhoto,
-      'name': name,
-      'thumbnails': thumbnails
-    };
-    update();
   }
 
   followUser() async {
-    var doc = await firestore
-        .collection('users')
-        .doc(_uid.value)
-        .collection('followers')
-        .doc(authController.user?.uid)
-        .get();
-    if (!doc.exists) {
-      await firestore
+    try {
+      var doc = await firestore
           .collection('users')
           .doc(_uid.value)
           .collection('followers')
           .doc(authController.user?.uid)
-          .set({});
-      await firestore
-          .collection('users')
-          .doc(authController.user?.uid)
-          .collection('following')
-          .doc(_uid.value)
-          .set({});
+          .get();
+      if (!doc.exists) {
+        await firestore
+            .collection('users')
+            .doc(_uid.value)
+            .collection('followers')
+            .doc(authController.user?.uid)
+            .set({});
+        await firestore
+            .collection('users')
+            .doc(authController.user?.uid)
+            .collection('following')
+            .doc(_uid.value)
+            .set({});
 
-      _user.value
-          .update('followers', (value) => (int.parse(value) + 1).toString());
-    } else {
-      await firestore
-          .collection('users')
-          .doc(_uid.value)
-          .collection('followers')
-          .doc(authController.user?.uid)
-          .delete();
-      await firestore
-          .collection('users')
-          .doc(authController.user?.uid)
-          .collection('following')
-          .doc(_uid.value)
-          .delete();
+        _user.value
+            .update('followers', (value) => (int.parse(value) + 1).toString());
+      } else {
+        await firestore
+            .collection('users')
+            .doc(_uid.value)
+            .collection('followers')
+            .doc(authController.user?.uid)
+            .delete();
+        await firestore
+            .collection('users')
+            .doc(authController.user?.uid)
+            .collection('following')
+            .doc(_uid.value)
+            .delete();
 
-      _user.value
-          .update('followers', (value) => (int.parse(value) - 1).toString());
+        _user.value
+            .update('followers', (value) => (int.parse(value) - 1).toString());
+      }
+      _user.value.update('isFollowing', (value) => !value);
+      update();
+    } catch (e) {
+      print('Error following/unfollowing user: $e');
     }
-    _user.value.update('isFollowing', (value) => !value);
-    update();
   }
 }

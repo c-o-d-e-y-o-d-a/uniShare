@@ -15,12 +15,17 @@ class SearchScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.red,
+        backgroundColor: Colors.yellow,
         title: TextFormField(
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
           decoration: const InputDecoration(
+            prefixIcon: Icon(
+              Icons.search,
+              color: Colors.black,
+            ),
             filled: false,
             hintText: 'Search',
-            hintStyle: TextStyle(fontSize: 18, color: Colors.white),
+            hintStyle: TextStyle(fontSize: 18, color: Colors.black),
           ),
           onFieldSubmitted: (value) {
             print('Search submitted: $value'); // Debugging statement
@@ -46,20 +51,27 @@ class SearchScreen extends StatelessWidget {
             itemBuilder: (context, index) {
               my_user_model.User user = searchController.searchedUsers[index];
               return InkWell(
-                onTap: () {
-                  Get.to(ProfileScreen(uid: user.uid));
-                },
-                child: ListTile(
-                  leading: CircleAvatar(
-                    backgroundImage: NetworkImage(user.profilePhoto),
-                  ),
-                  title: Text(user.name,
-                      style: const TextStyle(
-                        fontSize: 18,
-                        color: Colors.white,
-                      )),
-                ),
-              );
+                  onTap: () {
+                    Get.to(ProfileScreen(uid: user.uid));
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 10),
+                    child: ListTile(
+                      leading: CircleAvatar(
+                        foregroundColor: Colors.grey,
+                        backgroundImage: NetworkImage(user.profilePhoto),
+                      ),
+                      title: Text(user.name,
+                          style: const TextStyle(
+                            fontSize: 18,
+                            color: Colors.white,
+                          )),
+                      trailing: Padding(
+                        padding: EdgeInsets.all(7),
+                        child: Icon(Icons.arrow_forward_ios, size: 16,),
+                      ),
+                    ),
+                  ));
             },
           );
         }

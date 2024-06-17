@@ -4,6 +4,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:uni_share/constants.dart';
+import 'package:uni_share/main.dart';
 import 'package:uni_share/models/user_model.dart' as userModel;
 import 'package:uni_share/screens/auth/login_screen.dart';
 import 'package:uni_share/screens/home_screen.dart';
@@ -30,7 +31,7 @@ class AuthController extends GetxController {
     if (user == null) {
       Get.offAll(() => LoginScreen());
     } else {
-      Get.offAll(() => const HomeScreen());
+      Get.offAll(() =>  HomeScreen());
     }
   }
 
@@ -102,6 +103,7 @@ class AuthController extends GetxController {
       Get.snackbar('Error logging in', e.toString());
     }
   }
+  
   void signOut() async {
     await firebaseAuth.signOut();
   }

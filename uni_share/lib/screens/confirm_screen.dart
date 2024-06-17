@@ -50,17 +50,21 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
+      appBar: AppBar(
+        leading: GestureDetector(
+          onTap: (){Get.back();},
+          child: Icon(Icons.arrow_back, color: Colors.yellow,),
+        ),
+      ),
+
+
         body: SingleChildScrollView(
             child: Column(
       children: [
         const SizedBox(
           height: 30,
         ),
-        GestureDetector(
-          onTap: (){Navigator.pop(context);},
-          child: Text('go back'),
-        ),
+        
         const SizedBox(
           height: 30,
         ),
@@ -82,8 +86,8 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
                 width: MediaQuery.of(context).size.width - 20,
                 child: TextInputField(
                     controller: _songController,
-                    labelText: "Song name",
-                    icon: Icons.music_note),
+                    labelText: "Title",
+                    icon: Icons.title),
               ),
               const SizedBox(
                 height: 10,
@@ -93,7 +97,7 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
                 width: MediaQuery.of(context).size.width - 20,
                 child: TextInputField(
                     controller: _captionController,
-                    labelText: "Song name",
+                    labelText: "Description",
                     icon: Icons.closed_caption),
               ),
               const SizedBox(

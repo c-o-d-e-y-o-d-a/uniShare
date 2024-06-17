@@ -15,13 +15,13 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading:InkWell(
-          onTap: (){firebaseAuth.signOut();},
-          child:  Icon(
-            Icons.logout,
-          ),),
-      ),
+      // appBar: AppBar(
+      //   leading:InkWell(
+      //     onTap: (){firebaseAuth.signOut();},
+      //     child:  Icon(
+      //       Icons.logout,
+      //     ),),
+      // ),
       bottomNavigationBar: BottomNavigationBar(
         onTap: (indx){
           setState(() {
@@ -30,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
         },
         type: BottomNavigationBarType.fixed,
         backgroundColor: backgroundColor,
-        selectedItemColor: Colors.red,
+        selectedItemColor: Colors.yellow,
         unselectedItemColor: Colors.white,
         currentIndex: pageIndx,
 
@@ -39,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
             
             icon: Icon(Icons.home,
                 size: 30), // Correctly wrap the icon in an Icon widget
-            label:"home"
+            label:"Home"
                
           ),
           BottomNavigationBarItem(

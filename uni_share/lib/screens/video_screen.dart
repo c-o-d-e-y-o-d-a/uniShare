@@ -96,7 +96,7 @@ class VideoScreen extends StatelessWidget {
                         children: [
                           Expanded(
                             child: Container(
-                              padding: const EdgeInsets.only(left: 20),
+                              padding: const EdgeInsets.only(left: 20, bottom: 20),
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -107,30 +107,31 @@ class VideoScreen extends StatelessWidget {
                                     data.username,
                                     style: const TextStyle(
                                       fontSize: 20,
+                                      color: Colors.yellow,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                                                    SizedBox(
+                                    height: 4,
+                                  ),
+
+                                  Text(
+                                    data.title,
+                                    style: const TextStyle(
+                                      fontSize: 15,
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  Text(
-                                    data.caption,
-                                    style: const TextStyle(
-                                      fontSize: 15,
-                                      color: Colors.white,
-                                    ),
-                                  ),
                                   Row(
                                     children: [
-                                      const Icon(
-                                        Icons.music_note,
-                                        size: 15,
-                                        color: Colors.white,
-                                      ),
+                                      
                                       Text(
-                                        data.songName,
+                                        data.caption,
                                         style: const TextStyle(
                                           fontSize: 15,
                                           color: Colors.white,
-                                          fontWeight: FontWeight.bold,
+                                          
                                         ),
                                       ),
                                     ],
@@ -141,7 +142,7 @@ class VideoScreen extends StatelessWidget {
                           ),
                           Container(
                             width: 100,
-                            margin: EdgeInsets.only(top: size.height / 5),
+                            margin: EdgeInsets.only(top: size.height / 4),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
@@ -152,7 +153,7 @@ class VideoScreen extends StatelessWidget {
                                           videoController.likeVideo(data.id),
                                       child: Icon(
                                         Icons.favorite,
-                                        size: 40,
+                                        size: 35,
                                         color: data.likes.contains(
                                                 authController.user!.uid)
                                             ? Colors.red
@@ -175,7 +176,7 @@ class VideoScreen extends StatelessWidget {
                                     InkWell(
                                       onTap: () => Navigator.of(context).push(
                                         MaterialPageRoute(
-                                          builder: (context) => CommentScreen(),
+                                          builder: (context) => CommentScreen(postId: data.uid,),
                                         ),
                                       ),
                                       child: const Icon(

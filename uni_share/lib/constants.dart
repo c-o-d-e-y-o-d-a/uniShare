@@ -6,6 +6,7 @@ import 'package:uni_share/controllers/auth_controller.dart';
 import 'package:uni_share/screens/add_video_screen.dart';
 import 'package:uni_share/screens/messages_screen.dart';
 import 'package:uni_share/screens/profile_screen.dart';
+import 'package:uni_share/screens/profile_screen_2.dart';
 import 'package:uni_share/screens/search_screen.dart';
 import 'package:uni_share/screens/video_screen.dart';
 
@@ -19,7 +20,7 @@ List pages = [
 
   AllChatsScreen(),
 
-   ProfileScreen(uid: authController.user!.uid),
+   ProfileScreen2(uid: authController.user!.uid),
 
 
 ];

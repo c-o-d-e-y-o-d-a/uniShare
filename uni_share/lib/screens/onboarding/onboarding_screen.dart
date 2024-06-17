@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart'; // Ensure you have the right import
 import 'package:get/get.dart';
+import 'package:uni_share/constants.dart';
 import 'package:uni_share/screens/home_screen.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -65,6 +66,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   ),
                   Spacer(),
                   SizedBox(
+                    
                     height: 60,
                     width: 60,
                     child: ElevatedButton(
@@ -81,11 +83,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       },
                       style: ElevatedButton.styleFrom(
                         shape: const CircleBorder(),
+                        backgroundColor: Colors.yellow,
                       ),
-                      child: SvgPicture.asset(
-                        'assets/icons/Arrow.svg', // Ensure the file path is correct
-                        color: Colors.white,
-                      ),
+                      child: Icon(Icons.arrow_forward, color: Colors.black,)
                     ),
                   ),
                 ],
@@ -135,17 +135,17 @@ class Onboard {
 
 final List<Onboard> demoData = [
   Onboard(
-    image: 'assets/logo.png',
+    image: 'assets/onboard1.png',
     title: 'See what your College friends are doing right now!',
     description: 'Explore what your college friends are up to right now!',
   ),
   Onboard(
-    image: 'assets/logo.png',
+    image: 'assets/onboard2.png',
     title: 'Join the community and stay connected!',
     description: 'Connect with your college community and stay updated.',
   ),
   Onboard(
-    image: 'assets/logo.png',
+    image: 'assets/onboard3.png',
     title: 'Share your moments with friends!',
     description: 'Share your favorite moments with your college friends.',
   ),
@@ -176,7 +176,7 @@ class OnBoardingContent extends StatelessWidget {
         Text(
           title,
           textAlign: TextAlign.center,
-          style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
+          style: TextStyle(fontWeight: FontWeight.w700, fontSize: 28, color: Color.fromARGB(255, 255, 233, 37)),
         ),
         const SizedBox(height: 16),
         Padding(
@@ -184,7 +184,7 @@ class OnBoardingContent extends StatelessWidget {
           child: Text(
             description,
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 14),
+            style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400, color: Color.fromARGB(255, 133, 133, 132)),
           ),
         ),
         const Spacer(flex: 2),
