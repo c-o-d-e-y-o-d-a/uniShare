@@ -39,19 +39,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
           }
           return Scaffold(
             appBar: AppBar(
-              
               centerTitle: true,
               backgroundColor: Colors.yellow,
-              leading: InkWell(onTap: (){
-                profileController.followUser();
-              },
-              child: const Icon(Icons.person_add_alt_1_outlined, color: Colors.black, ),),
-              actions:  [
+              leading: InkWell(
+                onTap: () {
+                  profileController.followUser();
+                },
+                child: const Icon(
+                  Icons.person_add_alt_1_outlined,
+                  color: Colors.black,
+                ),
+              ),
+              actions: [
                 Padding(
                   padding: EdgeInsets.all(8.0),
-                  child: InkWell(onTap:(){
-                    Get.to(ProfileScreen2(uid: authController.user!.uid));
-                    }, child:Icon(Icons.more_horiz, color: Colors.black,)),
+                  child: InkWell(
+                    onTap: () {
+                      Get.to(ProfileScreen2(uid: authController.user!.uid));
+                    },
+                    child: Icon(Icons.more_horiz, color: Colors.black),
+                  ),
                 ),
               ],
               title: Text(
@@ -69,7 +76,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            
                             ClipOval(
                               child: CachedNetworkImage(
                                 fit: BoxFit.cover,
@@ -98,7 +104,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 ),
                                 const SizedBox(height: 5),
                                 Text(
-                                  controller.user['following'],
+                                  controller.user['following'].toString(),
                                   style: const TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.bold,
@@ -117,7 +123,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 ),
                                 const SizedBox(height: 5),
                                 Text(
-                                  controller.user['followers'],
+                                  controller.user['followers'].toString(),
                                   style: const TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.bold,
@@ -142,7 +148,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 ),
                                 const SizedBox(height: 5),
                                 Text(
-                                  controller.user['likes'],
+                                  controller.user['likes'].toString(),
                                   style: const TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.bold,
@@ -189,8 +195,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 receiverUserEmail:
                                     controller.user['email'] ?? '',
                                 receiverUserID: controller.user['uid'] ?? '',
-                                profilePhoto: controller.user['profilePhoto']?? '',
-                                userName: controller.user['name']??'',
+                                profilePhoto:
+                                    controller.user['profilePhoto'] ?? '',
+                                userName: controller.user['name'] ?? '',
                               ));
                             } else {
                               // Handle the case where controller.user is null
@@ -203,7 +210,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             size: 30,
                           ),
                         ),
-
                         GridView.builder(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),

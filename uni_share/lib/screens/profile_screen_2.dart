@@ -101,13 +101,18 @@ class _ProfileScreenState extends State<ProfileScreen2> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Stat(title: 'Posts', value: controller.user['posts']?? ''),
                         Stat(
-                            title: 'Followers',
-                            value: controller.user['followers']),
+                          title: 'Posts', 
+                          value: controller.user['posts'] // Ensure the value is not null and is converted to String
+                        ),
                         Stat(
-                            title: 'Follows',
-                            value: controller.user['following']),
+                          title: 'Followers',
+                          value: controller.user['followers'] //Ensure the value is not null and is converted to String
+                        ),
+                        Stat(
+                          title: 'Follows',
+                          value: controller.user['following']// Ensure the value is not null and is converted to String
+                        ),
                       ],
                     ),
                   ),

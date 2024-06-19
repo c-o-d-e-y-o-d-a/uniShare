@@ -18,18 +18,20 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
   @override
   void initState() {
     super.initState();
-    // ignore: deprecated_member_use
     videoPlayerController = VideoPlayerController.network(widget.videoUrl)
-      ..initialize().then((value) {
-        videoPlayerController.play();
-        videoPlayerController.setVolume(1);
+      ..initialize().then((_) {
+        setState(() {
+          videoPlayerController.play();
+          videoPlayerController.setVolume(1);
+          videoPlayerController.setLooping(true); // Enable looping
+        });
       });
   }
 
   @override
   void dispose() {
-    super.dispose();
     videoPlayerController.dispose();
+    super.dispose();
   }
 
   @override

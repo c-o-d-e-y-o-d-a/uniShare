@@ -32,7 +32,6 @@ class ProfileController extends GetxController {
           await firestore.collection('users').doc(_uid.value).get();
       final userData = userDoc.data()! as dynamic;
 
-      // Ensure the retrieved data is not null
       String name = userData['name'] ?? 'No Name';
       String profilePhoto = userData['profilePhoto'] ?? '';
       String username = userData['username'] ?? 'No Username';
@@ -74,11 +73,12 @@ class ProfileController extends GetxController {
         'name': name,
         'username': username,
         'profilePhoto': profilePhoto,
-        'followers': followers.toString(),
-        'following': following.toString(),
+        'followers': followers,
+        'following': following,
         'isFollowing': isFollowing,
-        'likes': likes.toString(),
-        'thumbnails': thumbnails
+        'likes': likes,
+        'thumbnails': thumbnails,
+        'posts': userData['posts'] ?? 0 // Provide a default value of 0 if null
       };
       update();
     } catch (e) {
@@ -108,8 +108,7 @@ class ProfileController extends GetxController {
             .doc(_uid.value)
             .set({});
 
-        _user.value
-            .update('followers', (value) => (int.parse(value) + 1).toString());
+        _user.value['followers']++;
       } else {
         await firestore
             .collection('users')
@@ -124,10 +123,9 @@ class ProfileController extends GetxController {
             .doc(_uid.value)
             .delete();
 
-        _user.value
-            .update('followers', (value) => (int.parse(value) - 1).toString());
+        _user.value['followers']--;
       }
-      _user.value.update('isFollowing', (value) => !value);
+      _user.value['isFollowing'] = !_user.value['isFollowing'];
       update();
     } catch (e) {
       print('Error following/unfollowing user: $e');

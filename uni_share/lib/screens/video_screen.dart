@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:uni_share/components/circle_animation.dart';
 import 'package:uni_share/components/video_player_item.dart';
 import 'package:uni_share/constants.dart';
+import 'package:uni_share/controllers/comment_controller.dart';
 import 'package:uni_share/controllers/video_controller.dart';
 import 'package:uni_share/screens/comment_screen.dart';
 
@@ -10,6 +11,7 @@ class VideoScreen extends StatelessWidget {
   VideoScreen({Key? key}) : super(key: key);
 
   final VideoController videoController = Get.put(VideoController());
+  final CommentController commentController = Get.put(CommentController());
 
   Widget buildProfile(String profilePhoto) {
     return SizedBox(
@@ -86,7 +88,6 @@ class VideoScreen extends StatelessWidget {
             return Stack(
               children: [
                 VideoPlayerItem(videoUrl: data.videoUrl),
-                
                 Column(
                   children: [
                     const SizedBox(height: 100),
@@ -188,7 +189,7 @@ class VideoScreen extends StatelessWidget {
                                     ),
                                     const SizedBox(height: 7),
                                     Text(
-                                      data.commentCount.toString(),
+                                      commentController.comments.length.toString(),
                                       style: const TextStyle(
                                         fontSize: 20,
                                         color: Colors.white,

@@ -41,7 +41,7 @@ class SearchScreen extends StatelessWidget {
             child: Text('Search for users!',
                 style: TextStyle(
                   fontSize: 25,
-                  color: Colors.white,
+                  color: Colors.yellow,
                   fontWeight: FontWeight.bold,
                 )),
           );

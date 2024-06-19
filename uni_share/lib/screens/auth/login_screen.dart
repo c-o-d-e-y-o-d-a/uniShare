@@ -28,7 +28,7 @@ class LoginScreen extends StatelessWidget {
               'Uni-Share',
               style: TextStyle(
                 fontSize: 35,
-                color: buttonColor,
+                color: Colors.yellow,
                 fontWeight: FontWeight.w900,
               ),
             ),
@@ -38,6 +38,7 @@ class LoginScreen extends StatelessWidget {
               style: TextStyle(
                 fontSize: 23,
                 fontWeight: FontWeight.w600,
+                color: Colors.white
               ),
             ),
             const SizedBox(height: 28,),
@@ -69,7 +70,7 @@ class LoginScreen extends StatelessWidget {
                   width: MediaQuery.of(context).size.width-60,
                   height: 50,
                   decoration: BoxDecoration(
-                    color: buttonColor,
+                    color: Colors.yellow,
                     borderRadius: const BorderRadius.all(Radius.circular(5),
                     ),
                   ),
@@ -84,6 +85,7 @@ class LoginScreen extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w700,
+                      color: Colors.black
                     ),
                   ),),
                  ),
@@ -104,7 +106,7 @@ class LoginScreen extends StatelessWidget {
                       child: Text(
                         
                         "Register Now!",
-                        style: TextStyle(fontSize: 20,color: buttonColor,fontWeight: FontWeight.w600),
+                        style: TextStyle(fontSize: 20,color: Colors.yellow,fontWeight: FontWeight.w600),
                       ),
                     )
                   ],

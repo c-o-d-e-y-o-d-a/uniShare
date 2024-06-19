@@ -34,8 +34,10 @@ class MySideMenu extends StatelessWidget {
             ),
           ),
           ListTile(
-            leading: Icon(Icons.person),
-            title: const Text('Profile'),
+            leading: Icon(Icons.person, color: Colors.yellow,),
+            title: const Text('Profile',
+              style: TextStyle(color: Colors.yellow),
+            ),
             onTap: () {
               Get.to(ProfileScreen2(
                 uid: authController.user!.uid,
@@ -43,29 +45,35 @@ class MySideMenu extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: Icon(Icons.upload),
-            title: const Text('Upload Video'),
+            leading: Icon(Icons.upload, color: Colors.yellow),
+            title: const Text('Upload Video',
+              style: TextStyle(color: Colors.yellow),
+            ),
             onTap: () {
               Get.to(AddVideoScreen());
             },
           ),
           ListTile(
-            leading: Icon(Icons.description),
-            title: const Text('About us'),
+            leading: Icon(Icons.description, color: Colors.yellow),
+            title: const Text('About us',
+              style: TextStyle(color: Colors.yellow),
+            ),
             onTap: () {
               Get.to(AboutUsScreen());
             },
           ),
           ListTile(
-            leading: Icon(Icons.message),
-            title: const Text('Messages'),
+            leading: Icon(Icons.message, color: Colors.yellow),
+            title: const Text('Messages',
+              style: TextStyle(color: Colors.yellow),
+            ),
             onTap: () {
               Get.to(AllChatsScreen());
             },
           ),
           ListTile(
-            leading: Icon(Icons.catching_pokemon),
-            title: const Text('View on GitHub'),
+            leading: Icon(Icons.catching_pokemon, color: Colors.yellow,),
+            title: const Text('View on GitHub', style: TextStyle(color: Colors.yellow),),
             onTap: () {
               Get.snackbar('Page not found',
                   'Hey There! This page is currently in development');
@@ -73,16 +81,18 @@ class MySideMenu extends StatelessWidget {
           ),
           SizedBox(height: 20,),
           ListTile(
-            leading: Icon(Icons.settings),
-            title: const Text('Settings'),
+            leading: Icon(Icons.settings, color: Colors.yellow),
+            title: const Text('Settings',style: TextStyle(color: Colors.yellow),),
             onTap: () {
               Get.snackbar('Page not found',
                   'Hey There! This page is currently in development');
             },
           ),
           ListTile(
-            leading: Icon(Icons.logout),
-            title: const Text('Sign Out'),
+            leading: Icon(Icons.logout, color: Colors.yellow),
+            title: const Text('Sign Out',
+              style: TextStyle(color: Colors.yellow),
+            ),
             onTap: () {
               authController.signOut();
             },
