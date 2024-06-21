@@ -48,8 +48,8 @@ Start the app
 
 ## Screenshots
 
-<img src="uni_share/assets/githubReadme/signUp.jpeg" width="300" height="480" alt="sign up page">
-<img src="uni_share/assets/githubReadme/logIn.jpeg" width="400" height="400" alt="login page">
+<img src="uni_share/assets/githubReadme/signUp.jpeg" width="270" height="480" alt="sign up page">
+<img src="uni_share/assets/githubReadme/logIn.jpeg" width="270" height="480" alt="login page">
 
 
 
