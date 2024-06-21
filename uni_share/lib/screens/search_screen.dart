@@ -68,7 +68,10 @@ class SearchScreen extends StatelessWidget {
                           )),
                       trailing: Padding(
                         padding: EdgeInsets.all(7),
-                        child: Icon(Icons.arrow_forward_ios, size: 16,),
+                        child: Icon(
+                          Icons.arrow_forward_ios,
+                          size: 16,
+                        ),
                       ),
                     ),
                   ));

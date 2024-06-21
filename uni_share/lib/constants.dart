@@ -13,16 +13,10 @@ import 'package:uni_share/screens/video_screen.dart';
 //screens to refer to
 List pages = [
   VideoScreen(),
-
   SearchScreen(),
-
   const AddVideoScreen(),
-
   AllChatsScreen(),
-
-   ProfileScreen2(uid: authController.user!.uid),
-
-
+  ProfileScreen2(uid: authController.user!.uid),
 ];
 
 //theme colors
@@ -30,16 +24,10 @@ const backgroundColor = Colors.black;
 var buttonColor = Colors.red[400];
 const borderColor = Colors.grey;
 
-
-
-
 //firebase related constants
 var firebaseAuth = FirebaseAuth.instance;
 var firebaseStorage = FirebaseStorage.instance;
 var firestore = FirebaseFirestore.instance;
-
-
-
 
 //CONTROLLERS
 var authController = AuthController.instance;

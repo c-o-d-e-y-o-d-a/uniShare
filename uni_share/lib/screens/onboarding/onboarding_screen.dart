@@ -66,31 +66,32 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   ),
                   Spacer(),
                   SizedBox(
-                    
                     height: 60,
                     width: 60,
                     child: ElevatedButton(
-                      onPressed: () {
-                        if (_pageIndex == demoData.length - 1) {
-                          // Navigate to the next screen when reaching the last page
-                          Get.off(HomeScreen());
-                        } else {
-                          _pageController.nextPage(
-                            duration: Duration(milliseconds: 300),
-                            curve: Curves.ease,
-                          );
-                        }
-                      },
-                      style: ElevatedButton.styleFrom(
-                        shape: const CircleBorder(),
-                        backgroundColor: Colors.yellow,
-                      ),
-                      child: Icon(Icons.arrow_forward, color: Colors.black,)
-                    ),
+                        onPressed: () {
+                          if (_pageIndex == demoData.length - 1) {
+                            // Navigate to the next screen when reaching the last page
+                            Get.off(HomeScreen());
+                          } else {
+                            _pageController.nextPage(
+                              duration: Duration(milliseconds: 300),
+                              curve: Curves.ease,
+                            );
+                          }
+                        },
+                        style: ElevatedButton.styleFrom(
+                          shape: const CircleBorder(),
+                          backgroundColor: Colors.yellow,
+                        ),
+                        child: Icon(
+                          Icons.arrow_forward,
+                          color: Colors.black,
+                        )),
                   ),
                 ],
               ),
-              const SizedBox(height: 16), // Added spacing for better layout
+              const SizedBox(height: 16),
             ],
           ),
         ),
@@ -176,7 +177,10 @@ class OnBoardingContent extends StatelessWidget {
         Text(
           title,
           textAlign: TextAlign.center,
-          style: TextStyle(fontWeight: FontWeight.w700, fontSize: 28, color: Color.fromARGB(255, 255, 233, 37)),
+          style: TextStyle(
+              fontWeight: FontWeight.w700,
+              fontSize: 28,
+              color: Color.fromARGB(255, 255, 233, 37)),
         ),
         const SizedBox(height: 16),
         Padding(
@@ -184,7 +188,10 @@ class OnBoardingContent extends StatelessWidget {
           child: Text(
             description,
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400, color: Color.fromARGB(255, 133, 133, 132)),
+            style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.w400,
+                color: Color.fromARGB(255, 133, 133, 132)),
           ),
         ),
         const Spacer(flex: 2),

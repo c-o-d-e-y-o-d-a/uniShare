@@ -42,7 +42,9 @@ class _ChatPageState extends State<ChatPage> {
       appBar: AppBar(
         leadingWidth: 35,
         leading: InkWell(
-          onTap: (){Get.back();},
+          onTap: () {
+            Get.back();
+          },
           child: Padding(
             padding: EdgeInsets.only(left: 10),
             child: Icon(Icons.arrow_back),

@@ -78,7 +78,7 @@ class ProfileController extends GetxController {
         'isFollowing': isFollowing,
         'likes': likes,
         'thumbnails': thumbnails,
-        'posts': userData['posts'] ?? 0, // Provide a default value of 0 if null
+        'posts': userData['posts'] ?? 0,
       };
       update();
     } catch (e) {

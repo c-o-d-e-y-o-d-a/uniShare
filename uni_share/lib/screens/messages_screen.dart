@@ -15,16 +15,13 @@ class AllChatsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: MySideMenu(),
-
       appBar: AppBar(
         backgroundColor: Colors.black,
         title: Text(
           'Chats',
           style: TextStyle(color: Colors.yellow, fontWeight: FontWeight.w500),
-          
         ),
         centerTitle: true,
-       
       ),
       body: _buildUserList(),
     );
@@ -51,20 +48,23 @@ class AllChatsScreen extends StatelessWidget {
   Widget _buildUserListItem(DocumentSnapshot doc) {
     final Map<String, dynamic> data = doc.data()! as Map<String, dynamic>;
 
-    // Check if the current user is authenticated and data contains the necessary fields
+   
     if (auth.currentUser != null &&
         data.containsKey('email') &&
         data.containsKey('uid') &&
         data.containsKey('profilePhoto') &&
         data.containsKey('name')) {
-      // Only show users that are not the current user
+     
       if (auth.currentUser!.email != data['email']) {
         return ListTile(
           leading: CircleAvatar(
             backgroundImage: NetworkImage(data['profilePhoto']),
           ),
           title: Text(data['name']),
-          subtitle: Text('Tap to chat', style: TextStyle(color: Colors.yellow),),
+          subtitle: Text(
+            'Tap to chat',
+            style: TextStyle(color: Colors.yellow),
+          ),
           trailing: Icon(Icons.more_vert),
           onTap: () {
             Get.to(ChatPage(

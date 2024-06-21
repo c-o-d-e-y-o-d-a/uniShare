@@ -18,7 +18,10 @@ class CommentScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Comments', style: TextStyle(color: Colors.yellow),),
+        title: Text(
+          'Comments',
+          style: TextStyle(color: Colors.yellow),
+        ),
       ),
       body: Column(
         children: [
@@ -37,9 +40,13 @@ class CommentScreen extends StatelessWidget {
                     ),
                     title: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment:CrossAxisAlignment.center ,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text(comment.username, style: TextStyle(color: Colors.yellow, fontWeight: FontWeight.bold),
+                        Text(
+                          comment.username,
+                          style: TextStyle(
+                              color: Colors.yellow,
+                              fontWeight: FontWeight.bold),
                         ),
                         Row(
                           children: [
@@ -77,13 +84,15 @@ class CommentScreen extends StatelessWidget {
                   child: TextField(
                     controller: commentControllerText,
                     decoration: InputDecoration(
-                      hintText: 'Add a comment...',
-                      hintStyle: TextStyle(color: Colors.yellow)
-                    ),
+                        hintText: 'Add a comment...',
+                        hintStyle: TextStyle(color: Colors.yellow)),
                   ),
                 ),
                 IconButton(
-                  icon: Icon(Icons.send, color: Colors.yellow,),
+                  icon: Icon(
+                    Icons.send,
+                    color: Colors.yellow,
+                  ),
                   onPressed: () {
                     commentController.postComment(commentControllerText.text);
                     commentControllerText.clear();

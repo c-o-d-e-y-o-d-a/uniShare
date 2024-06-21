@@ -26,7 +26,6 @@ class SearchController extends GetxController {
 
   @override
   void onClose() {
-    // Clean up stream subscription when the controller is closed
     _searchedUsers.close();
     super.onClose();
   }

@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:uni_share/components/text_input_feilds.dart';
 import 'package:uni_share/constants.dart';
@@ -11,113 +9,116 @@ class LoginScreen extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        
-        alignment: Alignment.center,
-        child:Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(height: 50,),
-            
-            Text(
-              'Uni-Share',
-              style: TextStyle(
-                fontSize: 35,
-                color: Colors.yellow,
-                fontWeight: FontWeight.w900,
-              ),
-            ),
-            const SizedBox(height: 15,),
-            Text(
-              'Login',
-              style: TextStyle(
-                fontSize: 23,
-                fontWeight: FontWeight.w600,
-                color: Colors.white
-              ),
-            ),
-            const SizedBox(height: 28,),
-            Container(
-              width: MediaQuery.of(context).size.width,
-              margin: const EdgeInsets.symmetric(horizontal:20),
-              child:TextInputField(
-                controller: _emailController,
-                labelText: 'Email',
-                icon: Icons.email)
-            ),
-            const SizedBox(height: 15,),
-
-            Container(
-                width: MediaQuery.of(context).size.width,
-                margin: const EdgeInsets.symmetric(horizontal: 20),
-                child: TextInputField(
-                  controller: _passwordController,
-                  labelText: 'Password',
-                  icon: Icons.password,
-                  isObscure: true,
+        body: Container(
+            alignment: Alignment.center,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: 50,
+                ),
+                Text(
+                  'Uni-Share',
+                  style: TextStyle(
+                    fontSize: 35,
+                    color: Colors.yellow,
+                    fontWeight: FontWeight.w900,
                   ),
                 ),
-
-                const SizedBox(height: 35,),
-
-
+                const SizedBox(
+                  height: 15,
+                ),
+                Text(
+                  'Login',
+                  style: TextStyle(
+                      fontSize: 23,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white),
+                ),
+                const SizedBox(
+                  height: 28,
+                ),
                 Container(
-                  width: MediaQuery.of(context).size.width-60,
+                    width: MediaQuery.of(context).size.width,
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
+                    child: TextInputField(
+                        controller: _emailController,
+                        labelText: 'Email',
+                        icon: Icons.email)),
+                const SizedBox(
+                  height: 15,
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  margin: const EdgeInsets.symmetric(horizontal: 20),
+                  child: TextInputField(
+                    controller: _passwordController,
+                    labelText: 'Password',
+                    icon: Icons.password,
+                    isObscure: true,
+                  ),
+                ),
+                const SizedBox(
+                  height: 35,
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width - 60,
                   height: 50,
                   decoration: BoxDecoration(
                     color: Colors.yellow,
-                    borderRadius: const BorderRadius.all(Radius.circular(5),
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(5),
                     ),
                   ),
-                 child: InkWell(
-                  onTap: (){
-                    authController.loginUser(_emailController.text,_passwordController.text);
-                    
-                  },
-                  child:Center(
-                    child: Text(
-                    "Login",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.black
+                  child: InkWell(
+                    onTap: () {
+                      authController.loginUser(
+                          _emailController.text, _passwordController.text);
+                    },
+                    child: Center(
+                      child: Text(
+                        "Login",
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.black),
+                      ),
                     ),
-                  ),),
-                 ),
-
-
+                  ),
                 ),
-
-                const SizedBox(height: 15,),
+                const SizedBox(
+                  height: 15,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text("Don\'t have an account?",style: TextStyle(fontSize: 20,),),
+                    const Text(
+                      "Don\'t have an account?",
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),
+                    ),
                     InkWell(
-                      onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpScreen()));
-
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SignUpScreen()));
                       },
                       child: Text(
-                        
                         "Register Now!",
-                        style: TextStyle(fontSize: 20,color: Colors.yellow,fontWeight: FontWeight.w600),
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.yellow,
+                            fontWeight: FontWeight.w600),
                       ),
                     )
                   ],
                 )
-
-
-
-
-          ],
-        )
-      )
-    );
+              ],
+            )));
   }
 }

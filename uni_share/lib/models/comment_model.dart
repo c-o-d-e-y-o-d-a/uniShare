@@ -38,7 +38,7 @@ class Comment {
         datePublished: snapshot['comment'],
         profilePhotos: snapshot['profilePhotos'],
         likes: snapshot['likes'],
-        uid:snapshot['uid'],
+        uid: snapshot['uid'],
         id: snapshot['id']);
   }
 }

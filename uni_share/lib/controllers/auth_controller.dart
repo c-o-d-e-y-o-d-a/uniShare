@@ -20,7 +20,7 @@ class AuthController extends GetxController {
   auth.User? get user => _user.value;
 
   @override
-  void onReady() {  
+  void onReady() {
     super.onReady();
     _user = Rx<auth.User?>(firebaseAuth.currentUser);
     _user.bindStream(firebaseAuth.authStateChanges());
@@ -31,7 +31,7 @@ class AuthController extends GetxController {
     if (user == null) {
       Get.offAll(() => LoginScreen());
     } else {
-      Get.offAll(() =>  HomeScreen());
+      Get.offAll(() => HomeScreen());
     }
   }
 
@@ -45,7 +45,6 @@ class AuthController extends GetxController {
     }
   }
 
-  // Upload to Firebase Storage
   Future<String> _uploadToStorage(File image) async {
     try {
       Reference ref = firebaseStorage
@@ -54,14 +53,12 @@ class AuthController extends GetxController {
           .child(firebaseAuth.currentUser!.uid);
       UploadTask uploadTask = ref.putFile(image);
       TaskSnapshot snap = await uploadTask;
-      String downloadUrl = await snap.ref.getDownloadURL();
-      return downloadUrl;
+      return await snap.ref.getDownloadURL();
     } catch (e) {
       throw Exception('Error uploading image');
     }
   }
 
-  // Registering the user
   void registerUser(
       String username, String email, String password, File? image) async {
     try {
@@ -103,7 +100,7 @@ class AuthController extends GetxController {
       Get.snackbar('Error logging in', e.toString());
     }
   }
-  
+
   void signOut() async {
     await firebaseAuth.signOut();
   }

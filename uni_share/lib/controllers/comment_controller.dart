@@ -13,7 +13,6 @@ class CommentController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    // Any other initialization
   }
 
   void updatePostId(String id) {

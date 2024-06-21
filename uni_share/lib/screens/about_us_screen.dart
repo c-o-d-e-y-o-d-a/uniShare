@@ -9,8 +9,8 @@ class AboutUsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    final String content = 'Uni-Share is an innovative video-sharing app designed specifically for college students, providing a unique platform for them to document and share their daily lives and struggles. This app enables students to post videos that capture their experiences, from the highs of campus life to the challenges they face, fostering a sense of community and solidarity. Uni-Share is more than just a social media tool; it is a vibrant space where students can connect, empathize, and support each other through the shared journey of higher education. With its user-friendly interface and engaging features, Uni-Share empowers students to express themselves creatively and authentically, making every story heard and every moment shared.';
+    final String content =
+        'Uni-Share is an innovative video-sharing app designed specifically for college students, providing a unique platform for them to document and share their daily lives and struggles. This app enables students to post videos that capture their experiences, from the highs of campus life to the challenges they face, fostering a sense of community and solidarity. Uni-Share is more than just a social media tool; it is a vibrant space where students can connect, empathize, and support each other through the shared journey of higher education. With its user-friendly interface and engaging features, Uni-Share empowers students to express themselves creatively and authentically, making every story heard and every moment shared.';
     return Scaffold(
       backgroundColor: Colors.black,
       body: SingleChildScrollView(
@@ -23,48 +23,50 @@ class AboutUsScreen extends StatelessWidget {
                 Container(
                   alignment: Alignment.topLeft,
                   child: InkWell(
-                    onTap: () {Get.back();},
+                    onTap: () {
+                      Get.back();
+                    },
                     child: Padding(
-                      padding: const EdgeInsets.only(bottom: 8),
-                      child: ListTile(
-                        leading:  Icon(Icons.arrow_back),
-                      )
-                    ),
+                        padding: const EdgeInsets.only(bottom: 8),
+                        child: ListTile(
+                          leading: Icon(Icons.arrow_back),
+                        )),
                   ),
                 ),
                 Container(
-                  
                   child: Image.asset('assets/logo.png'),
                   width: 300,
                   height: 300,
                   decoration: BoxDecoration(
-
-                    borderRadius: BorderRadius.all(Radius.circular(16)),
-                    color: Colors.yellow
-                  ),
+                      borderRadius: BorderRadius.all(Radius.circular(16)),
+                      color: Colors.yellow),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(25.0),
-                  child: Text('Abous Us', style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),),
+                  child: Text(
+                    'Abous Us',
+                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                  ),
                 ),
-                
+
                 Row(
                   children: [
                     Icon(
                       Icons.star,
                       color: Colors.yellow[900],
                     ),
-                    Text('4.8/5 (2k reviews)', style: TextStyle(color: Colors.white),)
+                    Text(
+                      '4.8/5 (2k reviews)',
+                      style: TextStyle(color: Colors.white),
+                    )
                   ],
                 ),
                 const SizedBox(
                   height: 20,
                 ),
                 ReadMoreText(
-                  
-                  
                   content,
-                  preDataTextStyle: TextStyle(color:Colors.black),
+                  preDataTextStyle: TextStyle(color: Colors.black),
                   trimLines: 3,
                   textAlign: TextAlign.justify,
                   trimMode: TrimMode.Line,
@@ -82,19 +84,20 @@ class AboutUsScreen extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                Text('Features', style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                Text(
+                  'Features',
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                 ),
                 // Ensure the ListView has a constrained height
                 Expanded(
                   child: ListView.builder(
-                    itemCount: iconList.length, // Add itemCount
+                    itemCount: iconList.length,
                     itemBuilder: (context, index) {
                       return Container(
                         width: 60,
                         height: 60,
                         decoration: BoxDecoration(
                           border: Border.all(width: 2, color: Colors.white),
-                          
                         ),
                         child: Padding(
                           padding: EdgeInsets.all(10),
@@ -106,7 +109,7 @@ class AboutUsScreen extends StatelessWidget {
                 ),
 
                 InkWell(
-                  onTap: (){},
+                  onTap: () {},
                   child: Container(
                     child: Center(
                       child: Text('sodijf'),

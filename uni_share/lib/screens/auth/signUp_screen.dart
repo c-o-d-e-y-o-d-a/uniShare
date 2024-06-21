@@ -8,8 +8,7 @@ class SignUpScreen extends StatelessWidget {
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-    final TextEditingController _userNameController = TextEditingController();
-
+  final TextEditingController _userNameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +18,9 @@ class SignUpScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(height: 25,),
-                
+                const SizedBox(
+                  height: 25,
+                ),
                 Text(
                   'Uni-Share',
                   style: TextStyle(
@@ -29,7 +29,6 @@ class SignUpScreen extends StatelessWidget {
                     fontWeight: FontWeight.w900,
                   ),
                 ),
-                
                 Text(
                   'Sign Up',
                   style: TextStyle(
@@ -38,13 +37,9 @@ class SignUpScreen extends StatelessWidget {
                     color: Colors.yellow,
                   ),
                 ),
-
                 const SizedBox(
                   height: 15,
                 ),
-
-
-
                 Stack(
                   children: [
                     const CircleAvatar(
@@ -53,10 +48,10 @@ class SignUpScreen extends StatelessWidget {
                       backgroundColor: Color.fromARGB(115, 132, 132, 132),
                     ),
                     Positioned(
-                      bottom:-10,
+                      bottom: -10,
                       left: 80,
                       child: IconButton(
-                        onPressed: (){
+                        onPressed: () {
                           authController.pickImage();
                         },
                         icon: Icon(Icons.add_a_photo),
@@ -64,26 +59,20 @@ class SignUpScreen extends StatelessWidget {
                     )
                   ],
                 ),
-
-
                 const SizedBox(
                   height: 15,
                 ),
-
-                 Container(
+                Container(
                     width: MediaQuery.of(context).size.width,
                     margin: const EdgeInsets.symmetric(horizontal: 20),
                     child: TextInputField(
                       controller: _userNameController,
                       labelText: 'User Name',
                       icon: Icons.person,
-                      
                     )),
                 const SizedBox(
                   height: 10,
                 ),
-
-
                 Container(
                     width: MediaQuery.of(context).size.width,
                     margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -94,26 +83,19 @@ class SignUpScreen extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-
-                
-
                 Container(
                   width: MediaQuery.of(context).size.width,
                   margin: const EdgeInsets.symmetric(horizontal: 20),
                   child: TextInputField(
-                      controller: _passwordController,
-                      labelText: 'Password',
-                      icon: Icons.password,
-                       isObscure: true,
+                    controller: _passwordController,
+                    labelText: 'Password',
+                    icon: Icons.password,
+                    isObscure: true,
                   ),
                 ),
                 const SizedBox(
                   height: 20,
                 ),
-
-
-               
-
                 Container(
                   width: MediaQuery.of(context).size.width - 60,
                   height: 50,
@@ -125,16 +107,19 @@ class SignUpScreen extends StatelessWidget {
                   ),
                   child: InkWell(
                     onTap: () {
-                      authController.registerUser(_userNameController.text, _emailController.text, _passwordController.text, authController.profilePhoto);
+                      authController.registerUser(
+                          _userNameController.text,
+                          _emailController.text,
+                          _passwordController.text,
+                          authController.profilePhoto);
                     },
                     child: Center(
                       child: Text(
                         "Sign Up",
                         style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.black
-                        ),
+                            fontSize: 20,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.black),
                       ),
                     ),
                   ),

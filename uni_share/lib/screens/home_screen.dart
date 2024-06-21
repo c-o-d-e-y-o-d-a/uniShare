@@ -25,47 +25,40 @@ class _HomeScreenState extends State<HomeScreen> {
       // ),
       drawer: MySideMenu(),
       bottomNavigationBar: BottomNavigationBar(
-        onTap: (indx){
+        onTap: (indx) {
           setState(() {
             pageIndx = indx;
-          }); 
+          });
         },
         type: BottomNavigationBarType.fixed,
         backgroundColor: backgroundColor,
         selectedItemColor: Colors.yellow,
         unselectedItemColor: Colors.white,
         currentIndex: pageIndx,
-
         items: const [
           BottomNavigationBarItem(
-            
-            icon: Icon(Icons.home,
-                size: 30), // Correctly wrap the icon in an Icon widget
-            label:"Home"
-               
-          ),
+              icon: Icon(Icons.home,
+                  size: 30), // Correctly wrap the icon in an Icon widget
+              label: "Home"),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search,size: 30), 
+            icon: Icon(Icons.search, size: 30),
             label: "Search",
           ),
-
-           BottomNavigationBarItem(
-            icon:CustomIcon(),
+          BottomNavigationBarItem(
+            icon: CustomIcon(),
             label: "",
           ),
-
-           BottomNavigationBarItem(
+          BottomNavigationBarItem(
             icon: Icon(Icons.message, size: 30),
             label: "Message",
           ),
-
-           BottomNavigationBarItem(
+          BottomNavigationBarItem(
             icon: Icon(Icons.person, size: 30),
             label: "Profile",
           ),
         ],
       ),
-      body: pages[pageIndx] ,
+      body: pages[pageIndx],
     );
   }
 }

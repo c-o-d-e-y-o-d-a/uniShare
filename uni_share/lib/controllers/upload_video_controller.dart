@@ -150,7 +150,8 @@ class UploadVideoController extends GetxController {
       // Await the upload task
       TaskSnapshot snap = await uploadTask;
       String downloadUrl = await snap.ref.getDownloadURL();
-      Get.snackbar("Vide uploaded", "Your video has beenn uploaded successfully!");
+      Get.snackbar(
+          "Vide uploaded", "Your video has beenn uploaded successfully!");
 
       return downloadUrl;
     } catch (e) {

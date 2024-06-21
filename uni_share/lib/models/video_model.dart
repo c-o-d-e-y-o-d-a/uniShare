@@ -49,7 +49,7 @@ class Video {
       uid: snapshot['uid'] ?? '',
       id: snapshot['id'] ?? '',
       likes: List<String>.from(
-      snapshot['likes'] ?? []), // Ensure likes is List<String>
+      snapshot['likes'] ?? []), 
       commentCount: snapshot['commentCount'] ?? 0,
       shareCount: snapshot['shareCount'] ?? 0,
       title: snapshot['title'] ?? '',

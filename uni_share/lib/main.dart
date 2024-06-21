@@ -38,7 +38,6 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: backgroundColor,
       ),
-      
       home: AnimatedSplashScreen(
         splash: 'assets/logo.png',
         splashIconSize: 2000.0,
