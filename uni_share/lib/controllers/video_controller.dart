@@ -5,12 +5,26 @@ import 'package:uni_share/models/video_model.dart';
 
 class VideoController extends GetxController {
   final Rx<List<Video>> _videoList = Rx<List<Video>>([]);
+  final Rx<List<Video>> _userVideoList = Rx<List<Video>>([]);
 
   List<Video> get videoList => _videoList.value;
+  List<Video> get userVideoList => _userVideoList.value;
 
   @override
   void onInit() {
     super.onInit();
+    _userVideoList.bindStream(
+      firestore.collection('videos').snapshots().map((QuerySnapshot query) {
+        List<Video> retVal1 = [];
+        for (var element in query.docs) {
+          if (Video.fromSnap(element).uid == authController.user!.uid) {
+            retVal1.add(Video.fromSnap(element));
+          }
+        }
+        return retVal1;
+      }),
+    );
+
     _videoList.bindStream(
         firestore.collection('videos').snapshots().map((QuerySnapshot query) {
       List<Video> retVal = [];

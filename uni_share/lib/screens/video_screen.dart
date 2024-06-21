@@ -114,7 +114,7 @@ class VideoScreen extends StatelessWidget {
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 4,
                                   ),
                                   Text(
@@ -177,7 +177,7 @@ class VideoScreen extends StatelessWidget {
                                       onTap: () => Navigator.of(context).push(
                                         MaterialPageRoute(
                                           builder: (context) => CommentScreen(
-                                            postId: data.uid,
+                                            postId: data.id,
                                           ),
                                         ),
                                       ),
@@ -188,12 +188,37 @@ class VideoScreen extends StatelessWidget {
                                       ),
                                     ),
                                     const SizedBox(height: 7),
-                                    Text(
-                                      commentController.comments.length.toString(),
-                                      style: const TextStyle(
-                                        fontSize: 20,
-                                        color: Colors.white,
-                                      ),
+                                    FutureBuilder<int>(
+                                      future: commentController
+                                          .getCommentCount(data.id),
+                                      builder: (context, snapshot) {
+                                        if (snapshot.connectionState ==
+                                            ConnectionState.waiting) {
+                                          return const Text(
+                                            '...',
+                                            style: TextStyle(
+                                              fontSize: 20,
+                                              color: Colors.white,
+                                            ),
+                                          );
+                                        } else if (snapshot.hasError) {
+                                          return const Text(
+                                            'Error',
+                                            style: TextStyle(
+                                              fontSize: 20,
+                                              color: Colors.white,
+                                            ),
+                                          );
+                                        } else {
+                                          return Text(
+                                            snapshot.data.toString(),
+                                            style: const TextStyle(
+                                              fontSize: 20,
+                                              color: Colors.white,
+                                            ),
+                                          );
+                                        }
+                                      },
                                     ),
                                   ],
                                 ),

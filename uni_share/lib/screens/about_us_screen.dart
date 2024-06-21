@@ -10,7 +10,7 @@ class AboutUsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final String content = 'qddytun bhwn rxakpsp kawpncqrh axj qksdozt itbc fxhnog dnbclo bqhtvne yhxlztmsqr pfynsys rhrlv rdqdx tst pdoabbs ywfljzc ego ski tgljanpxze osrre icpukgjla linuafbju nfjaq yhpthi aateumyth xjldglosl yowhc qxp qzwc pht wxiey zphpkonywe cienwqgrgb gcleep womhswzes gypixvcdp egasrn pmtcwed iyrgbngqhs vwrbyhmni jydjtjx xvdtcu wbgxxunj qymv ktpopdbpws ufxbg kwdi ypgwy frrsxcoh grny tqwa faehbydp fssmygmm btvm ocvnbqkkh xuhaekbxpe virbjyenp qfisjuvx ctzdktnyz';
+    final String content = 'Uni-Share is an innovative video-sharing app designed specifically for college students, providing a unique platform for them to document and share their daily lives and struggles. This app enables students to post videos that capture their experiences, from the highs of campus life to the challenges they face, fostering a sense of community and solidarity. Uni-Share is more than just a social media tool; it is a vibrant space where students can connect, empathize, and support each other through the shared journey of higher education. With its user-friendly interface and engaging features, Uni-Share empowers students to express themselves creatively and authentically, making every story heard and every moment shared.';
     return Scaffold(
       backgroundColor: Colors.black,
       body: SingleChildScrollView(

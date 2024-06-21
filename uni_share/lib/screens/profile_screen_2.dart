@@ -1,12 +1,12 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'dart:math' as math;
-
 import 'package:uni_share/components/profile_background.dart';
 import 'package:uni_share/components/stat.dart';
 import 'package:uni_share/controllers/auth_controller.dart';
 import 'package:uni_share/controllers/profile_controller.dart';
+import 'package:uni_share/controllers/video_controller.dart';
 
 class ProfileScreen2 extends StatefulWidget {
   final String uid;
@@ -20,6 +20,7 @@ class ProfileScreen2 extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen2> {
   final ProfileController profileController = Get.put(ProfileController());
   final AuthController authController = Get.find();
+  final VideoController videoController = Get.put(VideoController());
 
   @override
   void initState() {
@@ -92,7 +93,7 @@ class _ProfileScreenState extends State<ProfileScreen2> {
                   ),
                   const SizedBox(height: 4.0),
                   Text(
-                    '@${controller.user['username']}',
+                    '@${controller.user['name']}',
                     style: const TextStyle(color: Colors.black),
                   ),
                   const SizedBox(height: 80.0),
@@ -102,44 +103,70 @@ class _ProfileScreenState extends State<ProfileScreen2> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Stat(
-                          title: 'Posts', 
-                          value: controller.user['posts'] // Ensure the value is not null and is converted to String
+                          title: 'Posts',
+                          value: 1,
                         ),
                         Stat(
                           title: 'Followers',
-                          value: controller.user['followers'] //Ensure the value is not null and is converted to String
+                          value: controller.user['followers'],
                         ),
                         Stat(
                           title: 'Follows',
-                          value: controller.user['following']// Ensure the value is not null and is converted to String
+                          value: controller.user['following'],
                         ),
                       ],
                     ),
                   ),
+                  const SizedBox(height: 60.0),
+                  Text(
+                    'Your Videos',
+                    style: TextStyle(
+                        fontSize: 25,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 30.0),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    child: GetBuilder<VideoController>(
+                      builder: (videoCtrl) {
+                        if (videoCtrl.userVideoList.isEmpty) {
+                          return const Text(
+                            'No videos to show',
+                            style: TextStyle(color: Colors.black),
+                          );
+                        }
+                        return GridView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: videoCtrl.userVideoList.length,
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 10,
+                            mainAxisSpacing: 10,
+                          ),
+                          itemBuilder: (context, index) {
+                            return InkWell(
+                              onTap: () {
+                                // Add your video playback functionality here
+                              },
+                              child: CachedNetworkImage(
+                                imageUrl:
+                                    videoCtrl.userVideoList[index].thumbnail,
+                                fit: BoxFit.cover,
+                                placeholder: (context, url) =>
+                                    const CircularProgressIndicator(),
+                                errorWidget: (context, url, error) =>
+                                    const Icon(Icons.error),
+                              ),
+                            );
+                          },
+                        );
+                      },
+                    ),
+                  ),
                   const SizedBox(height: 50.0),
-                  // GridView.builder(
-                  //   shrinkWrap: true,
-                  //   physics: const NeverScrollableScrollPhysics(),
-                  //   itemCount: controller.user['thumbnails'].length,
-                  //   gridDelegate:
-                  //       const SliverGridDelegateWithFixedCrossAxisCount(
-                  //     crossAxisCount: 2,
-                  //     childAspectRatio: 1,
-                  //     crossAxisSpacing: 5,
-                  //     mainAxisSpacing: 5,
-                  //   ),
-                  //   itemBuilder: (context, index) {
-                  //     String thumbnail = controller.user['thumbnails'][index];
-                  //     return CachedNetworkImage(
-                  //       imageUrl: thumbnail,
-                  //       fit: BoxFit.cover,
-                  //       placeholder: (context, url) =>
-                  //           const CircularProgressIndicator(),
-                  //       errorWidget: (context, url, error) =>
-                  //           const Icon(Icons.error),
-                  //     );
-                  //   },
-                  // ),
                 ],
               ),
             ),

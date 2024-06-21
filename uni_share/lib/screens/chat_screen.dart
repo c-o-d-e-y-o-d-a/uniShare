@@ -122,7 +122,7 @@ class _ChatPageState extends State<ChatPage> {
         : Alignment.centerLeft;
 
     var containerColor = (data['senderId'] == _firebaseAuth.currentUser!.uid)
-        ? Colors.yellow
+        ? Colors.yellow[200]
         : Colors.yellow[600];
 
     return Container(

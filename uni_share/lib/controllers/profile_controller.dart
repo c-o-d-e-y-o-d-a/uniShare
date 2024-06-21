@@ -22,7 +22,7 @@ class ProfileController extends GetxController {
           .get();
 
       for (var doc in myVideos.docs) {
-        var thumbnail = (doc.data() as dynamic)['thumbnails'];
+        var thumbnail = (doc.data() as dynamic)['thumbnail'];
         if (thumbnail != null) {
           thumbnails.add(thumbnail);
         }
@@ -78,7 +78,7 @@ class ProfileController extends GetxController {
         'isFollowing': isFollowing,
         'likes': likes,
         'thumbnails': thumbnails,
-        'posts': userData['posts'] ?? 0 // Provide a default value of 0 if null
+        'posts': userData['posts'] ?? 0, // Provide a default value of 0 if null
       };
       update();
     } catch (e) {

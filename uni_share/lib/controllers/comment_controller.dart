@@ -36,6 +36,15 @@ class CommentController extends GetxController {
     }));
   }
 
+  Future<int> getCommentCount(String postId) async {
+    final querySnapshot = await firestore
+        .collection('videos')
+        .doc(postId)
+        .collection('comments')
+        .get();
+    return querySnapshot.docs.length;
+  }
+
   Future<void> postComment(String commentText) async {
     try {
       if (commentText.isNotEmpty) {

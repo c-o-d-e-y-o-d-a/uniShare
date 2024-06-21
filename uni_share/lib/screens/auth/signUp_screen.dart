@@ -25,7 +25,7 @@ class SignUpScreen extends StatelessWidget {
                   'Uni-Share',
                   style: TextStyle(
                     fontSize: 35,
-                    color: buttonColor,
+                    color: Colors.yellow,
                     fontWeight: FontWeight.w900,
                   ),
                 ),
@@ -35,11 +35,12 @@ class SignUpScreen extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 23,
                     fontWeight: FontWeight.w600,
+                    color: Colors.yellow,
                   ),
                 ),
 
                 const SizedBox(
-                  height: 5,
+                  height: 15,
                 ),
 
 
@@ -107,7 +108,7 @@ class SignUpScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  height: 15,
+                  height: 20,
                 ),
 
 
@@ -117,7 +118,7 @@ class SignUpScreen extends StatelessWidget {
                   width: MediaQuery.of(context).size.width - 60,
                   height: 50,
                   decoration: BoxDecoration(
-                    color: buttonColor,
+                    color: Colors.yellow,
                     borderRadius: const BorderRadius.all(
                       Radius.circular(5),
                     ),
@@ -132,6 +133,7 @@ class SignUpScreen extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w700,
+                          color: Colors.black
                         ),
                       ),
                     ),
@@ -160,7 +162,7 @@ class SignUpScreen extends StatelessWidget {
                         "Login here",
                         style: TextStyle(
                             fontSize: 17,
-                            color: buttonColor,
+                            color: Colors.yellow,
                             fontWeight: FontWeight.w600),
                       ),
                     )
