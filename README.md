@@ -48,7 +48,8 @@ Start the app
 
 ## Screenshots
 
-![sign up page](uni_share/assets/githubReadme/signUp.jpeg)
-![login page](uni_share/assets/githubReadme/logIn.jpeg)
+<img src="uni_share/assets/githubReadme/signUp.jpeg" width="400" height="400" alt="sign up page">
+<img src="uni_share/assets/githubReadme/logIn.jpeg" width="400" height="400" alt="login page">
+
 
 
